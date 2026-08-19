@@ -29,8 +29,8 @@ jobs:
         run: |
           echo "Starting EC2..."
           aws ec2 start-instances \
-            --instance-ids i-0ed018af10cfa4aa5 \
-            --region ap-southeast-1
+            --instance-ids i-033b527c4a7fec111 \
+            --region ap-northeast-1
           echo "Instance Started"
 
       - name: Stop EC2
@@ -38,8 +38,8 @@ jobs:
         run: |
           echo "Stopping EC2..."
           aws ec2 stop-instances \
-            --instance-ids i-0ed018af10cfa4aa5 \
-            --region ap-southeast-1
+            --instance-ids i-033b527c4a7fec111 \
+            --region ap-northeast-1
           echo "Instance Stopped"
 
       - name: Terminate EC2
@@ -47,6 +47,6 @@ jobs:
         run: |
           echo "Terminating EC2..."
           aws ec2 terminate-instances \
-            --instance-ids i-0ed018af10cfa4aa5 \
-            --region ap-southeast-1
+            --instance-ids i-033b527c4a7fec111 \
+            --region ap-northeast-1
           echo "Instance Terminated"
