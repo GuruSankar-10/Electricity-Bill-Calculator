@@ -11,6 +11,7 @@ on:
           - start
           - stop
           - terminate
+          - reboot
 
 jobs:
   ec2-control:
@@ -29,7 +30,7 @@ jobs:
         run: |
           echo "Starting EC2..."
           aws ec2 start-instances \
-            --instance-ids i-033b527c4a7fec111 \
+            --instance-ids i-0593787c79a805b13 \
             --region ap-northeast-1
           echo "Instance Started"
 
@@ -38,7 +39,7 @@ jobs:
         run: |
           echo "Stopping EC2..."
           aws ec2 stop-instances \
-            --instance-ids i-033b527c4a7fec111 \
+            --instance-ids i-0593787c79a805b13 \
             --region ap-northeast-1
           echo "Instance Stopped"
 
@@ -47,6 +48,16 @@ jobs:
         run: |
           echo "Terminating EC2..."
           aws ec2 terminate-instances \
-            --instance-ids i-033b527c4a7fec111 \
+            --instance-ids i-0593787c79a805b13 \
             --region ap-northeast-1
           echo "Instance Terminated"
+
+       - name: Reboot EC2
+         if: ${{ inputs.action == 'reboot' }}
+         run: |
+             echo "Rebooting EC2..."
+             aws ec2 terminate-instances \
+               --instance-ids i-0593787c79a805b13 \
+               --region ap-northeast-1
+               echo "Instance Rebooted"
+       
